@@ -1,92 +1,144 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
-        <link rel="stylesheet" href="css/webmap-brt.css">
-        <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-        </script>
-        <style>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/L.Control.Locate.min.css">
+    <link rel="stylesheet" href="css/webmap-brt.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
+    <style>
         #map {
             width: 100vw;
             height: 100vh;
         }
-        </style>
-        <title></title>
-    </head>
-    <body>
-        <div id="map">
-        </div>
-        <script src="js/webmap-brt-expressions.js"></script>
-        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
-        <script src="js/leaflet.rotatedMarker.js"></script>
-        <script src="js/leaflet.pattern.js"></script>
-        <script src="js/leaflet-hash.js"></script>
-        <script src="js/Autolinker.min.js"></script>
-        <script src="js/rbush.min.js"></script>
-        <script src="js/labelgun.min.js"></script>
-        <script src="js/labels.js"></script>
-        <script src="data/bus_stops_1.js"></script>
-        <script>
+    </style>
+    <title></title>
+</head>
 
+<body>
+    <div id="map">
+    </div>
+    <script src="js/webmap-brt-expressions.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/L.Control.Locate.min.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.pattern.js"></script>
+    <script src="js/leaflet-hash.js"></script>
+    <script src="js/Autolinker.min.js"></script>
+    <script src="js/rbush.min.js"></script>
+    <script src="js/labelgun.min.js"></script>
+    <script src="js/labels.js"></script>
+    <script src="js/nouislider.min.js"></script>
+    <script src="js/wNumb.js"></script>
+    <script src="data/data.js"></script>
+    <script>
         var api_stadia = 'd665daaa-c574-4129-a04a-d443865cb97c'
         var map = L.map('map', {
-            zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[18.959155873777696,-98.34765556199129],[19.090022479410795,-98.07164760998482]]);
-        var hash = new L.Hash(map);
-        map.attributionControl.setPrefix('Desarrollado por: <a href="https://www.linkedin.com/in/geofrancisco/" title="Ingeniero Francisco Contreras "target="_blank">Francisco Contreras</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="#">GEOCARTOS</a> ');
-        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
-        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
-        var bounds_group = new L.featureGroup([]);
-        function setBounds() {
-        }
-        map.createPane('pane_DarkMatternolabels_0');
-        map.getPane('pane_DarkMatternolabels_0').style.zIndex = 400;
-        var layer_DarkMatternolabels_0 =
-        L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=d665daaa-c574-4129-a04a-d443865cb97c',
-        {
-            pane: 'pane_DarkMatternolabels_0', 
-            opacity: 1.0,
-            attribution: 'Basemap ©<a href="https://stadiamaps.com/">Stadia Maps</a> &middot; Data ©<a href=https://www.openstreetmap.org/copyright">OpenStreetMaps</a>' ,
-            minZoom: 1,
+            zoomControl: true,
             maxZoom: 28,
-            minNativeZoom: 0,
-            maxNativeZoom: 20
+            minZoom: 1
+        }).fitBounds([
+            [18.959155873777696, -98.34765556199129],
+            [19.090022479410795, -98.07164760998482]
+        ]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix(
+            'Desarrollado por: <a href="https://www.linkedin.com/in/geofrancisco/" title="Ingeniero Francisco Contreras "target="_blank">Francisco Contreras</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="#">GEOCARTOS</a> '
+        );
+        var autolinker = new Autolinker({
+            truncate: {
+                length: 30,
+                location: 'smart'
+            }
         });
-        layer_DarkMatternolabels_0;
-        map.addLayer(layer_DarkMatternolabels_0);
+        L.control.locate({
+            locateOptions: {
+                maxZoom: 19
+            }
+        }).addTo(map);
+        var bounds_group = new L.featureGroup([]);
+
+        function setBounds() {}
+
+        map.createPane('pane_baseMap');
+        map.getPane('pane_baseMap').style.zIndex = 400;
+
+        // BASEMAPS
+        var stadiaBaseMap = L.tileLayer(
+                'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=d665daaa-c574-4129-a04a-d443865cb97c', {
+                    pane: 'pane_baseMap',
+                    opacity: 1.0,
+                    attribution: 'Basemap ©<a href="https://stadiamaps.com/">Stadia Maps</a> &middot; Data ©<a href=https://www.openstreetmap.org/copyright">OpenStreetMaps</a>',
+                    minZoom: 1,
+                    maxZoom: 28,
+                    minNativeZoom: 0,
+                    maxNativeZoom: 20
+                });
+        stadiaBaseMap;
+        map.addLayer(stadiaBaseMap);
+        // POPUPS
         function pop_bus_stops_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties[
+                'name'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ROUTE'] !== null ? autolinker.link(feature.properties['ROUTE'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['ROUTE'] !== null ? autolinker.link(feature.properties[
+                'ROUTE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ruta'] !== null ? autolinker.link(feature.properties['ruta'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['ruta'] !== null ? autolinker.link(feature.properties[
+                'ruta'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+            layer.bindPopup(popupContent, {
+                maxHeight: 400
+            });
         }
-
-
-        var iconL1 = L.icon({iconUrl:'images/png/icon-l1.png',iconSize:[15,15]})
-            iconL2 = L.icon({iconUrl:'images/png/icon-l2.png',iconSize:[15,15]})
-            iconL3 = L.icon({iconUrl:'images/png/icon-l3.png',iconSize:[15,15]})
-
-        
-
-        function style_bus_stops_1_0(feature) {
-            switch(String(feature.properties['ruta'])) {
+        function pop_routes_brt_0(feature, layer) {
+        var popupContent = '<table>\
+            <tr>\
+                <td colspan="2">' + (feature.properties['osm_id'] !== null ?
+                    autolinker.link(feature.properties['osm_id'].toLocaleString()) : '') + '</td>\
+            </tr>\
+            <tr>\
+                <td colspan="2">' + (feature.properties['name'] !== null ?
+                    autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+            </tr>\
+            <tr>\
+                <td colspan="2">' + (feature.properties['type'] !== null ?
+                    autolinker.link(feature.properties['type'].toLocaleString()) : '') + '</td>\
+            </tr>\
+        </table>';
+        layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+        // ICONOS
+        var iconL1 = L.icon({
+            iconUrl: 'images/png/icon-l1.png',
+            iconSize: [15, 15]
+        })
+        iconL2 = L.icon({
+            iconUrl: 'images/png/icon-l2.png',
+            iconSize: [15, 15]
+        })
+        iconL3 = L.icon({
+            iconUrl: 'images/png/icon-l3.png',
+            iconSize: [15, 15]
+        })
+        // ESTILOS
+        function clasified_style_bus_stop(feature) {
+            switch (String(feature.properties['ruta'])) {
                 case 'L1':
                     return iconL1
                     break;
@@ -98,43 +150,209 @@
                     break;
                 default:
                     return {
-                pane: 'pane_bus_stops_1',
-                radius: 3.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,0.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(58,113,201,1.0)',
-                interactive: true,
-            }
+                        pane: 'pane_bus_stops_1',
+                            radius: 3.0,
+                            opacity: 1,
+                            color: 'rgba(35,35,35,0.0)',
+                            dashArray: '',
+                            lineCap: 'butt',
+                            lineJoin: 'miter',
+                            weight: 1,
+                            fill: true,
+                            fillOpacity: 1,
+                            fillColor: 'rgba(58,113,201,1.0)',
+                            interactive: true,
+                    }
                     break;
             }
         }
-        map.createPane('pane_bus_stops_1');
-        map.getPane('pane_bus_stops_1').style.zIndex = 401;
-        map.getPane('pane_bus_stops_1').style['mix-blend-mode'] = 'normal';
-        var layer_bus_stops_1 = new L.geoJson(json_bus_stops_1, {
+        function clasified_style_rutas(feature) {
+            switch (String(feature.properties['name'])) {
+                case 'Ruta L1 BRT':
+                    return {
+                        pane: 'pane_ruta_1',
+                            opacity: 1,
+                            color: 'rgba(238,48,99,1.0)',
+                            dashArray: '',
+                            lineCap: 'square',
+                            lineJoin: 'bevel',
+                            weight: 1.0,
+                            fillOpacity: 0,
+                            interactive: true,
+                    }
+                    break;
+                case 'Ruta L2 BRT':
+                    return {
+                        pane: 'pane_ruta_2',
+                            opacity: 1,
+                            color: 'rgba(190,235,39,1.0)',
+                            dashArray: '',
+                            lineCap: 'square',
+                            lineJoin: 'bevel',
+                            weight: 1.0,
+                            fillOpacity: 0,
+                            interactive: true,
+                    }
+                    break;
+                case 'Ruta L3 BRT':
+                    return {
+                        pane: 'pane_ruta_3',
+                            opacity: 1,
+                            color: 'rgba(106,238,203,1.0)',
+                            dashArray: '',
+                            lineCap: 'square',
+                            lineJoin: 'bevel',
+                            weight: 1.0,
+                            fillOpacity: 0,
+                            interactive: true,
+                    }
+                    break;
+            }
+        }
+        // CREATE LAYERPANE
+        map.createPane('pane_ruta_1');
+        map.getPane('pane_ruta_1').style.zIndex = 400
+        map.getPane('pane_ruta_1').style['mix-blend-mode'] = 'normal'
+        map.createPane('pane_ruta_2');
+        map.getPane('pane_ruta_2').style.zIndex = 400
+        map.getPane('pane_ruta_2').style['mix-blend-mode'] = 'normal'
+        map.createPane('pane_ruta_3');
+        map.getPane('pane_ruta_3').style.zIndex = 400
+        map.getPane('pane_ruta_3').style['mix-blend-mode'] = 'normal'
+        map.createPane('pane_routes_brt_0');
+        map.getPane('pane_routes_brt_0').style.zIndex = 400;
+        map.getPane('pane_routes_brt_0').style['mix-blend-mode'] = 'normal';
+        map.createPane('pane_estaciones');
+        map.getPane('pane_estaciones').style.zIndex = 401;
+        map.getPane('pane_estaciones').style['mix-blend-mode'] = 'normal';
+        // LAYERS
+        var station_l1_layer = new L.geoJson(stations_l1, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_bus_stops_1',
-            layerName: 'layer_bus_stops_1',
-            pane: 'pane_bus_stops_1',
+            dataVar: 'stations_l1',
+            layerName: 'Estaciones L1 BRT',
+            pane: 'pane_estaciones',
             onEachFeature: pop_bus_stops_1,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, {icon:style_bus_stops_1_0(feature)});
+                return L.marker(latlng, {
+                    icon: clasified_style_bus_stop(feature)
+                });
             },
         });
-        bounds_group.addLayer(layer_bus_stops_1);
-        map.addLayer(layer_bus_stops_1);
+        bounds_group.addLayer(station_l1_layer);
+        map.addLayer(station_l1_layer);
+        var station_l2_layer = new L.geoJson(stations_l2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'stations_l2',
+            layerName: 'Estaciones L2 BRT',
+            pane: 'pane_estaciones',
+            onEachFeature: pop_bus_stops_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, {
+                    icon: clasified_style_bus_stop(feature)
+                });
+            },
+        });
+        bounds_group.addLayer(station_l2_layer);
+        map.addLayer(station_l2_layer);
+        var station_l3_layer = new L.geoJson(stations_l3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'stations_l3',
+            layerName: 'Estaciones L3 BRT',
+            pane: 'pane_estaciones',
+            onEachFeature: pop_bus_stops_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, {
+                    icon: clasified_style_bus_stop(feature)
+                });
+            },
+        });
+        bounds_group.addLayer(station_l3_layer);
+        map.addLayer(station_l3_layer);
+        
+        
+
+        var ruta_1_layer =  new L.geoJson(ruta_1_brt, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'ruta_1_brt',
+            layerName: 'Ruta 1 BRT',
+            pane: 'pane_ruta_1',
+            style: clasified_style_rutas,
+        })
+        bounds_group.addLayer(ruta_1_layer);
+        map.addLayer(ruta_1_layer);
+        var ruta_2_layer =new L.geoJson(ruta_2_brt, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'ruta_2_brt',
+            layerName: 'Ruta 2 BRT',
+            pane: 'pane_ruta_2',
+            style: clasified_style_rutas,
+            })
+        bounds_group.addLayer(ruta_2_layer);
+        map.addLayer(ruta_2_layer);
+        var ruta_3_layer =new L.geoJson(ruta_3_brt, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'ruta_3_brt',
+            layerName: 'Ruta 3 BRT',
+            pane: 'pane_ruta_3',
+            style: clasified_style_rutas,
+            })
+        bounds_group.addLayer(ruta_3_layer);
+        map.addLayer(ruta_3_layer);
+       
+       
+       
+       
+       
+       
+       
+       
+       
+        // LAYER GROUPS
+        var group_base_map = L.layerGroup([stadiaBaseMap]);
+        var group_rutes = L.layerGroup([ruta_1_layer,ruta_2_layer,ruta_3_layer])
+
+        var rutas = { 
+            
+            "<img src='legend/icon-l1.png' /> <span class='my-layer-item'> Estacion Ruta 1</span>":station_l1_layer,
+            "<img src='legend/icon-l2.png' /> <span class='my-layer-item'>Estacion Ruta 2</span>":station_l2_layer,
+            "<img src='legend/icon-l3.png' /> <span class='my-layer-item'>Estacion Ruta 3</span>":station_l3_layer,
+            
+            "<img src='legend/ruta_1.png' /> <span class='my-layer-item'>Ruta 1</span>":ruta_1_layer,
+            "<img src='legend/ruta_2.png' /> <span class='my-layer-item'>Ruta 2</span>":ruta_2_layer,
+            "<img src='legend/ruta_3.png' /> <span class='my-layer-item'>Ruta 3</span>":ruta_3_layer,
+        }
+
+            
+
+
+        var baseMaps = {
+            "<span class='fw-bold'>Stadia Maps&copy</span>": stadiaBaseMap
+        }
+
+        L.control.layers(baseMaps,rutas).addTo(map)
+
+        
+        
         setBounds();
-        </script>
-    </body>
+    </script>
+</body>
+
 </html>
