@@ -36,6 +36,8 @@
         <script src="js/labels.js"></script>
         <script src="data/bus_stops_1.js"></script>
         <script>
+
+        var api_stadia = 'd665daaa-c574-4129-a04a-d443865cb97c'
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
         }).fitBounds([[18.959155873777696,-98.34765556199129],[19.090022479410795,-98.07164760998482]]);
@@ -49,7 +51,7 @@
         map.createPane('pane_DarkMatternolabels_0');
         map.getPane('pane_DarkMatternolabels_0').style.zIndex = 400;
         var layer_DarkMatternolabels_0 =
-        L.tileLayer('https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=fd7ae4f5adc0413786c484d877ecebd3',
+        L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=d665daaa-c574-4129-a04a-d443865cb97c',
         {
             pane: 'pane_DarkMatternolabels_0', 
             opacity: 1.0,
