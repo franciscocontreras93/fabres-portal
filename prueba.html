@@ -1,1 +1,11 @@
-<span class="text-dark"></span>
+<table>\
+    <caption>(feature.properties['name'])</caption>
+    <tr>\
+        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties[
+            'name'].toLocaleString()) : '') + '</td>\
+    </tr>\
+    <tr>\
+        <td colspan="2">' + (feature.properties['ruta'] !== null ? autolinker.link(feature.properties[
+            'ruta'].toLocaleString()) : '') + '</td>\
+    </tr>\
+</table>
