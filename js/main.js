@@ -41,7 +41,7 @@
                 maxNativeZoom: 20
             });
         stadiaBaseMap;
-        map.addLayer(stadiaBaseMap);
+        
          var baseMapsatelital = L.tileLayer(
              'http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
                  pane: 'pane_baseMap',
@@ -55,7 +55,8 @@
              });
          baseMapsatelital;
          map.addLayer(baseMapsatelital);
-        // POPUPS
+         map.addLayer(stadiaBaseMap);
+         // POPUPS
         function pop_bus_stops_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
