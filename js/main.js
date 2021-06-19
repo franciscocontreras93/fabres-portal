@@ -301,8 +301,8 @@
             "<img src='legend/ruta_3.png' /> <span class='my-layer-item'>Ruta 3</span>": ruta_3_layer,
         }
         var baseMaps = {
-            "<span class='fw-bold'>Stadia Maps&copy</span>": stadiaBaseMap,
             "<span class='fw-bold'>Google Satelite&copy</span>": baseMapsatelital,
+            "<span class='fw-bold'>Stadia Maps&copy</span>": stadiaBaseMap,
         }
 
 
