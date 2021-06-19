@@ -42,6 +42,19 @@
             });
         stadiaBaseMap;
         map.addLayer(stadiaBaseMap);
+         var baseMapsatelital = L.tileLayer(
+             'http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+                 pane: 'pane_baseMap',
+                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+                 opacity: 1.0,
+                 attribution: 'Basemap ©<a href="https://stadiamaps.com/">Stadia Maps</a> &middot; Data ©<a href=https://www.openstreetmap.org/copyright">OpenStreetMaps</a>',
+                 minZoom: 1,
+                 maxZoom: 28,
+                 minNativeZoom: 0,
+                 maxNativeZoom: 20
+             });
+         baseMapsatelital;
+         map.addLayer(baseMapsatelital);
         // POPUPS
         function pop_bus_stops_1(feature, layer) {
             var popupContent = '<table>\
@@ -287,8 +300,10 @@
             "<img src='legend/ruta_3.png' /> <span class='my-layer-item'>Ruta 3</span>": ruta_3_layer,
         }
         var baseMaps = {
-            "<span class='fw-bold'>Stadia Maps&copy</span>": stadiaBaseMap
+            "<span class='fw-bold'>Stadia Maps&copy</span>": stadiaBaseMap,
+            "<span class='fw-bold'>Google Satelite&copy</span>": baseMapsatelital,
         }
+
 
 
         L.control.layers(baseMaps, rutas).addTo(map)
