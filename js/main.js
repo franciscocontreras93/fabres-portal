@@ -14,7 +14,7 @@
         var map = L.map('map', {
             zoomControl: true,
             maxZoom: 28,
-            minZoom: 5
+            minZoom: 13
         }).fitBounds([
             [18.959155873777696, -98.34765556199129],
             [19.090022479410795, -98.07164760998482]
